@@ -1,0 +1,265 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LAPS Portal administration &#8212; WebLAPS  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LAPS Portal maintenance" href="maintanance.html" />
+    <link rel="prev" title="Installation in Windows" href="install_win.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="laps-portal-administration">
+<h1>LAPS Portal administration<a class="headerlink" href="#laps-portal-administration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="accessing-admin-console">
+<h2>Accessing admin console<a class="headerlink" href="#accessing-admin-console" title="Permalink to this headline">¶</a></h2>
+<p>Right after initial setup LAPS Portal uses port 8443, open LAPS Portal in your browser <a class="reference external" href="https://host:8443">https://host:8443</a>. Select built-in authorization and login with admin/admin</p>
+<img alt="_images/laps_login.png" class="align-center" src="_images/laps_login.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Change default password in profile settings menu</p>
+</div>
+<img alt="_images/profile_menu.png" class="align-center" src="_images/profile_menu.png" />
+</div>
+<div class="section" id="active-directory-integration">
+<h2>Active Directory integration<a class="headerlink" href="#active-directory-integration" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration-&gt;Communications-&gt;LDAP</strong> and setup following settings:</p>
+<ul class="simple">
+<li>bind user account which has access rights to get attributes ms-Mcs-AdmPwd and modify ms-Mcs-AdmPwdExpirationTime</li>
+<li>FQDN name of AD servers (it is allowed to set several servers divided by “;”“)</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">ms-Mcs-AdmPwd is a special attribute which could be accessed via ldap over <strong>SSL</strong> thats why it is impossible to use IP addresses</p>
+</div>
+<ul class="simple">
+<li>Base OU for computers, users and groups searching</li>
+<li>Attribute of a computer which could contains an user or a group (group nesting is not supported) which will allow to get LAPS password of the computer. This mechanism does not connected with access control subsystem based on groups and containers</li>
+</ul>
+<img alt="_images/laps_ad_setup.png" class="align-center" src="_images/laps_ad_setup.png" />
+<p>You can enable scheduled password rotation for bind user</p>
+<img alt="_images/ldap_jobs.png" class="align-center" src="_images/ldap_jobs.png" />
+</div>
+<div class="section" id="certificates">
+<h2>Certificates<a class="headerlink" href="#certificates" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration-&gt;Communications-&gt;Certificates</strong> and import AD servers certificate and CA certificates (all certificate chain must be imported).
+In case of other integration which uses ssl/tls protocol like LinOTP HTTP API, FortiAuthenticator and others please do not forget import theirs certificates as well. LAPS Portal supports X.509 DER encoded certificates.</p>
+<p>After fresh install LAPS Portal generates self-signed certificate which has alias “jetty”. To replace self-signed certificate:</p>
+<ol class="arabic simple">
+<li><strong>Administration -&gt; Communications -&gt;Certificates</strong> press “Generate CSR” button, enter DNS name of host where LAPS Portal is located and save generated certificated signing request file.</li>
+<li>Generate certificated signed by externals CA using generated CSR file</li>
+<li>Import CA’s certificate</li>
+<li>Import certificate signed by CA, set as alias DNS name of server</li>
+</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">After certificates import do not forget to restart LAPS Portal</p>
+</div>
+</div>
+<div class="section" id="access-rights-management">
+<h2>Access rights management<a class="headerlink" href="#access-rights-management" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration-&gt;Security-&gt;Groups</strong> and setup user group to OU mappings. You must use distinguished names of groups and OUs. Members of group will be able to get LAPS passwords of computers in the OU and sub OUs.</p>
+<img alt="_images/laps_groups.png" class="align-center" src="_images/laps_groups.png" />
+<p>It is possible to import CSV file with groups and OUs mapping, file must be in following portal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="n">of</span> <span class="n">element</span><span class="p">;</span><span class="n">group</span> <span class="n">DN</span><span class="p">;</span><span class="n">OU</span> <span class="n">DN</span>
+<span class="n">forexample</span><span class="p">:</span>
+<span class="n">Boston</span><span class="p">;</span><span class="n">CN</span><span class="o">=</span><span class="n">LAPS_Boston</span><span class="p">,</span><span class="n">OU</span><span class="o">=</span><span class="n">Groups</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">com</span><span class="p">;</span><span class="n">OU</span><span class="o">=</span><span class="n">Boston</span><span class="p">,</span><span class="n">OU</span><span class="o">=</span><span class="n">Computers</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>Import the file</p>
+<img alt="_images/import_laps_mapping.png" class="align-center" src="_images/import_laps_mapping.png" />
+</div>
+<div class="section" id="authentication-setup">
+<h2>Authentication setup<a class="headerlink" href="#authentication-setup" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration-&gt;Security-&gt;Authentication</strong> and setup authentication parameters:</p>
+<ul>
+<li><p class="first">Require or not password check for internal LAPS Portal users. <strong>If you switch off this requirement then you must enable one time passwords (OTP) validation for this type of users!</strong></p>
+</li>
+<li><p class="first">Require or not password check for Active Directory users. Such approach could be recommended in case you will allow to use LAPS Portal from untrusted environment to eliminate risk of password stealing. <strong>If you switch off this requirement then you must enable one time passwords (OTP) validation for this type of users!</strong></p>
+</li>
+<li><p class="first">Require or not OTP validation for AD users</p>
+</li>
+<li><p class="first">Require or not OTP validation for users stored in LAPS Portal</p>
+</li>
+<li><dl class="first docutils">
+<dt>Type of OTP provider:</dt>
+<dd><ul class="first simple">
+<li>linotp provider is used for integration with LinOTP via http API. You must setup LinOTP valudation URL</li>
+</ul>
+<img alt="_images/laps_linotp.png" class="align-center" src="_images/laps_linotp.png" />
+<ul class="simple">
+<li>radius provider. You must configure address, shared secret and authentication type: chap, mschap, pap, peap, eap-md5, eap-tls, eap-mschap</li>
+</ul>
+<img alt="_images/laps_radius.png" class="align-center" src="_images/laps_radius.png" />
+<ul class="simple">
+<li>fortiauth provider for integration with FortiAuthenticator</li>
+</ul>
+<img alt="_images/laps_fortiauthenticator.png" class="align-center" src="_images/laps_fortiauthenticator.png" />
+<ul class="last simple">
+<li>totp provider which is built in to LAPS Portal. You can use this provider in case you do not have in your environment OTP system to enable two factor authentication for LAPS Portal. If you use this type of TOTP provider you will need to use mobile application like FreeOTP, Google Authenticator, etc.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Capcha generation requirements: capcha alphabet, unsuccessfull login attempts after capcha will be required</p>
+</li>
+</ul>
+<img alt="_images/laps_authentication.png" class="align-center" src="_images/laps_authentication.png" />
+</div>
+<div class="section" id="laps-passwords-expiration">
+<h2>LAPS passwords expiration<a class="headerlink" href="#laps-passwords-expiration" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration-&gt;Security-&gt;Extra</strong> and configure automatic LAPS password rotation. After access to ms-Mcs-AdmPwd by any user LAPS portal will modify ms-Mcs-AdmPwdExpirationTime attribute. You can also configure maximum allowed time difference between current time and value which LAPS Portal user can setup in expire field.</p>
+<img alt="_images/laps_extra.png" class="align-center" src="_images/laps_extra.png" />
+</div>
+<div class="section" id="laps-portal-api-and-tokens">
+<h2>LAPS Portal API and tokens<a class="headerlink" href="#laps-portal-api-and-tokens" title="Permalink to this headline">¶</a></h2>
+<p>If you have external systems like Endpoint Detection and Response which require access to passwords managed by LAPS you can use API provided by LAPS portal. To provide access LAPS Portal API you must configure access token. Each access token could be bind to specific IP address and additionally restricted by OU</p>
+<img alt="_images/laps_api.png" class="align-center" src="_images/laps_api.png" />
+<p>To get LAPS password with help of API you should use GET request to /passwordbytoken/{pc} and pass token in X-Auth cookie</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">passwordbytoken</span><span class="o">/</span><span class="n">computer123</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">Cookie</span><span class="p">:</span> <span class="n">X</span><span class="o">-</span><span class="n">Auth</span><span class="o">=</span><span class="n">APITOKEN</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="laps-portal-and-siem-integration">
+<h2>LAPS Portal and SIEM integration<a class="headerlink" href="#laps-portal-and-siem-integration" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration-&gt;Communications-&gt;Syslog</strong> and set IP of syslog receiver. LAPS Portal send logs in CEF format via UDP.</p>
+<img alt="_images/laps_syslog_cef.png" class="align-center" src="_images/laps_syslog_cef.png" />
+</div>
+<div class="section" id="extra-settings">
+<h2>Extra settings<a class="headerlink" href="#extra-settings" title="Permalink to this headline">¶</a></h2>
+<p>Go <strong>Administration-&gt;Communications-&gt;Extra</strong> and configure:</p>
+<ul class="simple">
+<li>User access token duration (maximum time of users inactivity)</li>
+</ul>
+<img alt="_images/laps_session.png" class="align-center" src="_images/laps_session.png" />
+<ul class="simple">
+<li>Some sensitive API are protected by internal DoS filter. You can restrict maximum number of requests per second to this sensitive API related to authentication, password accessing</li>
+<li>HTTP header which contains information of client IP address if LAPS Portal located behind reverse proxy or balancer</li>
+</ul>
+<img alt="_images/laps_network.png" class="align-center" src="_images/laps_network.png" />
+<p>Backup passwords managed by LAPS</p>
+<p>At <strong>Administration-&gt;System-&gt;Laps Backup</strong> you can configure automatic backup of passwords managed by LAPS. You can use saved passwords in case of AD unavailability. You can configure:</p>
+<ul class="simple">
+<li>сron exporession</li>
+<li>password which will be used to encrypt ZIP archive with computers passwords</li>
+<li>base DN of computers</li>
+<li>maximum count of archive files</li>
+</ul>
+<img alt="_images/laps_passwords_backup.png" class="align-center" src="_images/laps_passwords_backup.png" />
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">WebLAPS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LAPS Portal administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-admin-console">Accessing admin console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#active-directory-integration">Active Directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#certificates">Certificates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-rights-management">Access rights management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-setup">Authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#laps-passwords-expiration">LAPS passwords expiration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#laps-portal-api-and-tokens">LAPS Portal API and tokens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#laps-portal-and-siem-integration">LAPS Portal and SIEM integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extra-settings">Extra settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="install_win.html" title="previous chapter">Installation in Windows</a></li>
+      <li>Next: <a href="maintanance.html" title="next chapter">LAPS Portal maintenance</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, weblaps.pro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/admin.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

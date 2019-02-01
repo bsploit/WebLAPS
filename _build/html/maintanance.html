@@ -1,0 +1,282 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LAPS Portal maintenance &#8212; WebLAPS  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Working with LAPS Portal" href="working.html" />
+    <link rel="prev" title="LAPS Portal administration" href="admin.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="laps-portal-maintenance">
+<h1>LAPS Portal maintenance<a class="headerlink" href="#laps-portal-maintenance" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="laps-portal-restarting">
+<h2>LAPS Portal restarting<a class="headerlink" href="#laps-portal-restarting" title="Permalink to this headline">¶</a></h2>
+<p>To restart LAPS portal you can use:</p>
+<ul>
+<li><p class="first">on unix systems:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">для</span> <span class="n">unix</span><span class="p">:</span> <span class="n">service</span> <span class="n">laps</span> <span class="n">restart</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">on windows systems:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="n">services</span><span class="o">.</span><span class="n">msc</span> <span class="ow">and</span> <span class="n">restart</span> <span class="n">laps</span> <span class="n">service</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">via LAPS Portal GUI. Go to <strong>Administration -&gt; System -&gt; Service</strong> and press “Restart” button</p>
+</li>
+</ul>
+</div>
+<div class="section" id="log-files">
+<h2>Log files<a class="headerlink" href="#log-files" title="Permalink to this headline">¶</a></h2>
+<p>LAPS portal creates following log files:</p>
+<ul class="simple">
+<li>logs/laps*.log</li>
+<li>logs/wrapper.log</li>
+</ul>
+<p>You can view logs of LAPS Portal in <strong>Administration -&gt; System -&gt;Log(File)</strong>, select log file and press “Search” button</p>
+<img alt="_images/laps_system_log.png" class="align-center" src="_images/laps_system_log.png" />
+</div>
+<div class="section" id="engine-conf-file">
+<h2>engine.conf file<a class="headerlink" href="#engine-conf-file" title="Permalink to this headline">¶</a></h2>
+<p>File conf/engine.conf is JSON file which contains basic configuration options</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Option</strong></th>
+<th class="head"><strong>Value type</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>basepath</td>
+<td>string</td>
+<td>path to directory where LAPS portal is located. This parameter is automatically filled by LAPS Portal itself</td>
+</tr>
+<tr class="row-odd"><td>init_completed</td>
+<td>boolean</td>
+<td>flag which is set to true after first launching when default settings are configured</td>
+</tr>
+<tr class="row-even"><td>sslport</td>
+<td>string</td>
+<td>port used by LAPS Portal to serve TLS connection</td>
+</tr>
+<tr class="row-odd"><td>keystore_pass</td>
+<td>string</td>
+<td>password for java ket storage file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="laps-portal-backup">
+<h2>LAPS Portal backup<a class="headerlink" href="#laps-portal-backup" title="Permalink to this headline">¶</a></h2>
+<p>To restore LAPS portal you should backup following files:</p>
+<ul class="simple">
+<li>conf/engine.conf (in case you modified default network port)</li>
+<li>conf/confdb.db – internal sqlite database which contains settings and event logs</li>
+<li>conf/license.txt - license activation file</li>
+<li>keystore/keystore.jks – certificate store</li>
+<li>backups/laps/* - backup files with passwords of computers managed by LAPS</li>
+<li>wrapper/conf/wrapper.conf – service/daemon configuration</li>
+<li>bin/log4j.properties – log level properties</li>
+</ul>
+</div>
+<div class="section" id="admin-password-reset">
+<h2>Admin password reset<a class="headerlink" href="#admin-password-reset" title="Permalink to this headline">¶</a></h2>
+<p>If you forget admin password you can reset it in following way:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>on windows systems::</dt>
+<dd>wrapper/bat
+runConsole.bat resetpass</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>on unix systems::</dt>
+<dd>wrapper/sh
+./runConsole.sh resetpass</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="acceptsecuritycontext">
+<h3>AcceptSecurityContext<a class="headerlink" href="#acceptsecuritycontext" title="Permalink to this headline">¶</a></h3>
+<p>AcceptSecurityContext error can appear during establishing connection to ActiveDirectory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">LDAP</span><span class="p">:</span> <span class="n">error</span> <span class="n">code</span> <span class="mi">49</span> <span class="o">-</span> <span class="mi">80090308</span><span class="p">:</span> <span class="n">LdapErr</span><span class="p">:</span> <span class="n">DSID</span><span class="o">-</span><span class="mi">0</span><span class="n">C0903A9</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="n">AcceptSecurityContext</span> <span class="n">error</span><span class="p">,</span> <span class="n">data</span> <span class="mi">52</span><span class="n">e</span><span class="p">,</span> <span class="n">v1db1</span>
+</pre></div>
+</div>
+<p>For error code 49 reason of error shown in data field</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>data field code</strong></th>
+<th class="head"><strong>description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>525</td>
+<td>User not found</td>
+</tr>
+<tr class="row-odd"><td>52e</td>
+<td>Wrong password</td>
+</tr>
+<tr class="row-even"><td>530</td>
+<td>not allowed to login at this time</td>
+</tr>
+<tr class="row-odd"><td>531</td>
+<td>no access right to login to this computer</td>
+</tr>
+<tr class="row-even"><td>532</td>
+<td>password expired</td>
+</tr>
+<tr class="row-odd"><td>533</td>
+<td>user account disabled</td>
+</tr>
+<tr class="row-even"><td>701</td>
+<td>user account expired</td>
+</tr>
+<tr class="row-odd"><td>773</td>
+<td>password reset is required</td>
+</tr>
+<tr class="row-even"><td>775</td>
+<td>user account is locked</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="sslhandshakeexception">
+<h3>SSLHandshakeException<a class="headerlink" href="#sslhandshakeexception" title="Permalink to this headline">¶</a></h3>
+<p>javax.naming.CommunicationException javax.net.ssl.SSLHandshakeException indicates that LAPS Portal could not validate certificate chain during SSL/TLS hadshake. In case of following errors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">javax</span><span class="o">.</span><span class="n">naming</span><span class="o">.</span><span class="n">CommunicationException</span><span class="p">:</span> <span class="n">simple</span> <span class="n">bind</span> <span class="n">failed</span><span class="p">:</span> <span class="n">server</span><span class="o">.</span><span class="n">local</span><span class="p">:</span><span class="mi">636</span> <span class="p">[</span><span class="n">Root</span> <span class="n">exception</span> <span class="ow">is</span> <span class="n">javax</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">SSLHandshakeException</span><span class="p">:</span> <span class="n">sun</span><span class="o">.</span><span class="n">security</span><span class="o">.</span><span class="n">validator</span><span class="o">.</span><span class="n">ValidatorException</span><span class="p">:</span> <span class="n">PKIX</span> <span class="n">path</span> <span class="n">building</span> <span class="n">failed</span><span class="p">:</span> <span class="n">sun</span><span class="o">.</span><span class="n">security</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">certpath</span><span class="o">.</span><span class="n">SunCertPathBuilderException</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">valid</span> <span class="n">certification</span> <span class="n">path</span> <span class="n">to</span> <span class="n">requested</span> <span class="n">target</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You should check whether all certificate chain imported into LAPS Portal. After importing certificates do not forget to restart LAPS Portal service.</p>
+<p>In case this error appears during communication with AD Controllers you should also check how many certificates domain controller has with Server Authentication purpose. In normal situation AD Controller should have one personal certificate with Server Authentication purposes . According to <a class="reference external" href="https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx">https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx</a> <em>“You should be planning on having only one certificate on each LDAP server (i.e. domain controller or AD LDS computer) with the purpose of Server Authentication. If you have legitimate reasons for using more than one, you may end up having certificate selection issues, which is discussed further in the Active Directory Domain Services Certificate Storage.</em> As workaround import all certificates with Server Authentication purposes  to LAPS Portal</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">WebLAPS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LAPS Portal maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#laps-portal-restarting">LAPS Portal restarting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#log-files">Log files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#engine-conf-file">engine.conf file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#laps-portal-backup">LAPS Portal backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#admin-password-reset">Admin password reset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#errors">Errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#acceptsecuritycontext">AcceptSecurityContext</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sslhandshakeexception">SSLHandshakeException</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="admin.html" title="previous chapter">LAPS Portal administration</a></li>
+      <li>Next: <a href="working.html" title="next chapter">Working with LAPS Portal</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, weblaps.pro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/maintanance.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

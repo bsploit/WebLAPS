@@ -1,0 +1,149 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Installation in Windows &#8212; WebLAPS  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LAPS Portal administration" href="admin.html" />
+    <link rel="prev" title="Installation in Unix" href="install_unix.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="installation-in-windows">
+<h1>Installation in Windows<a class="headerlink" href="#installation-in-windows" title="Permalink to this headline">¶</a></h1>
+<p>Installation is pretty simple, the only thing you need is to install Java JRE 1.8</p>
+<ol class="arabic">
+<li><p class="first">Create local user “laps” – this user will be used to run portal service.</p>
+</li>
+<li><p class="first">Allow user “laps” to work as a service:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpedit</span><span class="o">.</span><span class="n">msc</span> <span class="o">-&gt;</span> <span class="n">Local</span> <span class="n">Policy</span> <span class="o">-&gt;</span> <span class="n">User</span> <span class="n">Rights</span> <span class="n">Assignment</span> <span class="o">-&gt;</span> <span class="n">Log</span> <span class="n">on</span> <span class="k">as</span> <span class="n">a</span> <span class="n">service</span><span class="p">:</span> <span class="n">add</span> <span class="n">user</span> <span class="s2">&quot;laps&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create directory C:\laps\ and extract distributive.</p>
+</li>
+<li><p class="first">Change the directories owner and set up appropriate access rights: user “laps” must have read and write access rights, other users except administrators must not have access to the directory</p>
+</li>
+<li><p class="first">if java.exe is not on %PATH% set correct path to java executable in file C:\laps\wrapper\conf\wrapper.conf. As file path separator use <em>“/”</em>:</p>
+<blockquote>
+<div><p>wrapper.java.command = path_to_java_exe</p>
+</div></blockquote>
+</li>
+<li><p class="first">Install LAPS portal service. New service “laps” will be created.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\\<span class="n">laps</span>\\<span class="n">wrapper</span>\\<span class="n">bat</span>\\<span class="n">installService</span><span class="o">.</span><span class="n">bat</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you have your own license file copy it to C:\laps\_conf\license.txt. Default destribition includes a community license file.</p>
+</li>
+<li><p class="first">Run the service:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="n">start</span> <span class="n">laps</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Open in browser <a class="reference external" href="https://host:8443">https://host:8443</a></p>
+</li>
+</ol>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">WebLAPS</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation in Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="install_unix.html" title="previous chapter">Installation in Unix</a></li>
+      <li>Next: <a href="admin.html" title="next chapter">LAPS Portal administration</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, weblaps.pro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/install_win.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
