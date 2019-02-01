@@ -31,18 +31,9 @@ Security controls implemented in LAPS Portal
    :maxdepth: 3
    :caption: Contents:
    
+   working
    install_unix
    install_win
    admin
-   maintanance
-   working
-
+   maintanance   
    
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
