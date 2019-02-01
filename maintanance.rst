@@ -7,7 +7,7 @@ To restart LAPS portal you can use:
 
 * on unix systems::
 	
-	для unix: service laps restart
+	service laps restart
 
 * on windows systems::
 	
