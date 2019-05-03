@@ -7,7 +7,7 @@ To restart LAPS portal you can use:
 
 * on unix systems::
 	
-	для unix: service laps restart
+	service laps restart
 
 * on windows systems::
 	
@@ -51,6 +51,27 @@ File conf/engine.conf is JSON file which contains basic configuration options
   * - keystore_pass 
     - string
     - password for java ket storage file 
+  * - jetty_cert_alias 
+    - string
+    - alias of certificate which will be used by TLS engine
+  * - jdbc_driver 
+    - string
+    - jdbc driver wor database management system used by LASP Portal
+  * - db_host 
+    - string
+    - databse host
+  * - db_port 
+    - int
+    - databse port
+  * - db 
+    - string
+    - database name
+  * - db_username 
+    - string
+    - database user
+  * - db_password 
+    - string
+    - database password
 
 LAPS Portal backup
 ------------------

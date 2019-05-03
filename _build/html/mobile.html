@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LAPS Portal mobile application &mdash; WebLAPS  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="LAPS Portal maintenance" href="maintanance.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebLAPS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LAPS Portal mobile application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#laps-mobile-application-enrollment">LAPS mobile application enrollment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#laps-mobile-application-usage">LAPS mobile application usage</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebLAPS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>LAPS Portal mobile application</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/mobile.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="laps-portal-mobile-application">
+<h1>LAPS Portal mobile application<a class="headerlink" href="#laps-portal-mobile-application" title="Permalink to this headline">¶</a></h1>
+<p>LAPS Portal has mobile clients which works under <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ksoft.laps">Android</a> and <a class="reference external" href="https://itunes.apple.com/us/app/laps-mobile/id1461133789">iOS</a> devices.
+Main features of LAPS mobile client:</p>
+<ul class="simple">
+<li>secure access to passwords managed by MS LAPS: in addition to TLS encryption all passwords are additionally encrypted with AES algorithm with unique device key per user. This device key is generated during device enrollment process and stored in secure way at mobile device. On iOS key is stored directly in the KeyChain. On Android key itself is encrypted with random 256-bit AES master key which is encrypted with a device-generated RSA (RSA/ECB/PKCS1Padding) from the Android KeyStore. The combination of the encrypted RSA(AES(master key)) and AES(device key) are stored in SharedPreferences.</li>
+<li>PIN protection. If device has fingerprint scanner it will be automatically used by application</li>
+<li>ability to get LAPS passwords in a convenient and secure way using mobile device</li>
+<li>ability to setup password new expiration date</li>
+<li>login to LAPS Portal with help of confirmation of push notification</li>
+</ul>
+<div class="section" id="laps-mobile-application-enrollment">
+<h2>LAPS mobile application enrollment<a class="headerlink" href="#laps-mobile-application-enrollment" title="Permalink to this headline">¶</a></h2>
+<p>There are two way how to start use LAPS mobile application</p>
+<ol class="arabic simple">
+<li>Go to <strong>Profile settings -&gt; Mobile</strong>, press “Enroll mobile device” and scan generated QR code at mobile device</li>
+</ol>
+<img alt="_images/profile_menu.png" class="align-center" src="_images/profile_menu.png" />
+<img alt="_images/laps_mobile_enroll_qr.png" class="align-center" src="_images/laps_mobile_enroll_qr.png" />
+<ol class="arabic simple" start="2">
+<li>Enter External Portal URL configured at <strong>Administration-&gt;Communications-&gt;Mobile</strong> to mobile device URL field, fill username, password and OTP</li>
+</ol>
+<img alt="_images/laps_mobile_enrollment.png" class="align-center" src="_images/laps_mobile_enrollment.png" />
+</div>
+<div class="section" id="laps-mobile-application-usage">
+<h2>LAPS mobile application usage<a class="headerlink" href="#laps-mobile-application-usage" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Enter PIN or use your fingerprint to login to LAPS Mobile</li>
+</ol>
+<img alt="_images/laps_mobile_login.png" class="align-center" src="_images/laps_mobile_login.png" />
+<ol class="arabic simple">
+<li>Enter computer name and press find button</li>
+</ol>
+<img alt="_images/laps_mobile_app.png" class="align-center" src="_images/laps_mobile_app.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="maintanance.html" class="btn btn-neutral" title="LAPS Portal maintenance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, weblaps.pro
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -84,6 +84,7 @@
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 </ul>
 
             
@@ -151,8 +152,9 @@
   <div class="section" id="welcome-to-weblaps-documentation">
 <h1>Welcome to WebLAPS documentation!<a class="headerlink" href="#welcome-to-weblaps-documentation" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="http://weblaps.pro/">LAPS Portal</a> is a web application which helps to secure windows environment with MS LAPS solution implemented. MS LAPS is effective mechanism to perform automatic password rotation of built-in Administrator password. <strong>In case of compromising one of user account which is used for LAPS passwords access (like account of help desk user) all computers could be compromised!</strong> To eliminate security risks and provide convenient way for LAPS password accessing LAPS Portal was created.</p>
-<p>LAPS Portal is written in Java, and could be used on any operation systems which support Java 1.8. LAPS Portal includes all necessary components and does not require additional software like web server or database engine.</p>
-<p>LAPS Portal uses Active Directory user accounts to perform access control. To increase security of passwords managed by LAPS authentication with one time passwords was added to the portal. Currently following 2fa connectors implemented:</p>
+<p>LAPS Portal has mobile clients which works under <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ksoft.laps">Android</a> and <a class="reference external" href="https://itunes.apple.com/us/app/laps-mobile/id1461133789">iOS</a> devices which in a secure way delivers passwords to mobile device. Mobile client also allows to login to LAPS Portal with help of confirmation of authentication request which is delivered by push notification.</p>
+<p>LAPS Portal is written in Java, and could be used on any operation systems which support Java 1.8. LAPS Portal includes all necessary components and does not require additional software like web server or database engine. It is possible to join several LAPS Portal to cluster to operatin in a high availability mode in such case you will need a load balancer and an external database engine.</p>
+<p>LAPS Portal uses Active Directory user accounts and groups to perform access control. To increase security of passwords managed by LAPS authentication with one time passwords was added to the portal. Currently following 2fa connectors implemented:</p>
 <ul class="simple">
 <li>RADIUS</li>
 <li>LinOTP</li>
@@ -165,7 +167,7 @@
 <li>Customizable capcha for brutforce attacks prevention</li>
 <li>Configurable maximum count of requests per seconds to authentications methods</li>
 <li>Configurable maximum count of requests per seconds to LAPS passwords accessing to prevent automatic exports of LAPS managed passwords</li>
-<li>Access to Active Directory is done via LDAP over SSL</li>
+<li>Access to Active Directory via LDAP over SSL</li>
 <li>All secrets are saved in encrypted form</li>
 <li>CSRF protection</li>
 <li>User access token is bind to IP address of successful authentication. Access token has a configurable time limit</li>
@@ -192,6 +194,8 @@
 <li class="toctree-l2"><a class="reference internal" href="admin.html#laps-passwords-expiration">LAPS passwords expiration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#laps-portal-api-and-tokens">LAPS Portal API and tokens</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#laps-portal-and-siem-integration">LAPS Portal and SIEM integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#laps-portal-mobile-app-settings">LAPS Portal mobile app settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#laps-portal-high-availability-mode">LAPS Portal high availability mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#extra-settings">Extra settings</a></li>
 </ul>
 </li>
@@ -206,6 +210,11 @@
 <li class="toctree-l3"><a class="reference internal" href="maintanance.html#sslhandshakeexception">SSLHandshakeException</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mobile.html#laps-mobile-application-enrollment">LAPS mobile application enrollment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mobile.html#laps-mobile-application-usage">LAPS mobile application usage</a></li>
 </ul>
 </li>
 </ul>

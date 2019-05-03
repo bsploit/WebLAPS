@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LAPS Portal mobile application" href="mobile.html" />
     <link rel="prev" title="LAPS Portal administration" href="admin.html" /> 
 
   
@@ -96,6 +97,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 </ul>
 
             
@@ -167,7 +169,7 @@
 <p>To restart LAPS portal you can use:</p>
 <ul>
 <li><p class="first">on unix systems:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">для</span> <span class="n">unix</span><span class="p">:</span> <span class="n">service</span> <span class="n">laps</span> <span class="n">restart</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">laps</span> <span class="n">restart</span>
 </pre></div>
 </div>
 </li>
@@ -221,6 +223,34 @@
 <tr class="row-odd"><td>keystore_pass</td>
 <td>string</td>
 <td>password for java ket storage file</td>
+</tr>
+<tr class="row-even"><td>jetty_cert_alias</td>
+<td>string</td>
+<td>alias of certificate which will be used by TLS engine</td>
+</tr>
+<tr class="row-odd"><td>jdbc_driver</td>
+<td>string</td>
+<td>jdbc driver wor database management system used by LASP Portal</td>
+</tr>
+<tr class="row-even"><td>db_host</td>
+<td>string</td>
+<td>databse host</td>
+</tr>
+<tr class="row-odd"><td>db_port</td>
+<td>int</td>
+<td>databse port</td>
+</tr>
+<tr class="row-even"><td>db</td>
+<td>string</td>
+<td>database name</td>
+</tr>
+<tr class="row-odd"><td>db_username</td>
+<td>string</td>
+<td>database user</td>
+</tr>
+<tr class="row-even"><td>db_password</td>
+<td>string</td>
+<td>database password</td>
 </tr>
 </tbody>
 </table>
@@ -325,6 +355,8 @@ runConsole.bat resetpass</dd>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mobile.html" class="btn btn-neutral float-right" title="LAPS Portal mobile application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="admin.html" class="btn btn-neutral" title="LAPS Portal administration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

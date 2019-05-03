@@ -92,10 +92,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#laps-passwords-expiration">LAPS passwords expiration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laps-portal-api-and-tokens">LAPS Portal API and tokens</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laps-portal-and-siem-integration">LAPS Portal and SIEM integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#laps-portal-mobile-app-settings">LAPS Portal mobile app settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#laps-portal-high-availability-mode">LAPS Portal high availability mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#extra-settings">Extra settings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 </ul>
 
             
@@ -201,6 +204,8 @@ In case of other integration which uses ssl/tls protocol like LinOTP HTTP API, F
 <li>Generate certificated signed by externals CA using generated CSR file</li>
 <li>Import CA’s certificate</li>
 <li>Import certificate signed by CA, set as alias DNS name of server</li>
+<li>add string parameter “jetty_cert_alias” at engine.conf file with value of certificate alias</li>
+<li>restart LAPS Portal</li>
 </ol>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -254,12 +259,16 @@ In case of other integration which uses ssl/tls protocol like LinOTP HTTP API, F
 </li>
 <li><p class="first">Capcha generation requirements: capcha alphabet, unsuccessfull login attempts after capcha will be required</p>
 </li>
+<li><p class="first">Account lockout policy: Account lockout threshold (number of unsuccessfull login attempts) after user will unable to login during defined period of time</p>
+</li>
 </ul>
 <img alt="_images/laps_authentication.png" class="align-center" src="_images/laps_authentication.png" />
 </div>
 <div class="section" id="laps-passwords-expiration">
 <h2>LAPS passwords expiration<a class="headerlink" href="#laps-passwords-expiration" title="Permalink to this headline">¶</a></h2>
-<p>Go to <strong>Administration-&gt;Security-&gt;Extra</strong> and configure automatic LAPS password rotation. After access to ms-Mcs-AdmPwd by any user LAPS portal will modify ms-Mcs-AdmPwdExpirationTime attribute. You can also configure maximum allowed time difference between current time and value which LAPS Portal user can setup in expire field.</p>
+<p>Go to <strong>Administration-&gt;Security-&gt;Extra</strong> and configure automatic LAPS password rotation. After access to ms-Mcs-AdmPwd by any user LAPS portal will modify ms-Mcs-AdmPwdExpirationTime attribute. You can also configure maximum allowed time difference between current time and value which LAPS Portal user can setup in expire field.
+If you have more than one domain controller you can force modifing of ms-Mcs-AdmPwdExpirationTime attribute on all configured domain controllers.
+Optinally you can add timeout between attempts to get passwords. This timeout will prevent from retriving passwords in fast way. This timeout is not used for API access via tokens described below.</p>
 <img alt="_images/laps_extra.png" class="align-center" src="_images/laps_extra.png" />
 </div>
 <div class="section" id="laps-portal-api-and-tokens">
@@ -278,6 +287,29 @@ In case of other integration which uses ssl/tls protocol like LinOTP HTTP API, F
 <p>Go to <strong>Administration-&gt;Communications-&gt;Syslog</strong> and set IP of syslog receiver. LAPS Portal send logs in CEF format via UDP.</p>
 <img alt="_images/laps_syslog_cef.png" class="align-center" src="_images/laps_syslog_cef.png" />
 </div>
+<div class="section" id="laps-portal-mobile-app-settings">
+<h2>LAPS Portal mobile app settings<a class="headerlink" href="#laps-portal-mobile-app-settings" title="Permalink to this headline">¶</a></h2>
+<p>LAPS Portal has mobile client which works on Android and iOS devices. With help of mobile application it is possible to get passwords and login to LAPS Portal with help of confirmation at mobile device of authentication request which is delivered by push notification.
+Go to <strong>Administration-&gt;Communications-&gt;Mobile</strong> and perform configuration:</p>
+<ul class="simple">
+<li>Enable or disable mobile features of LAPS Portal</li>
+<li>Sync URL for mobile app - is URL which LAPS Portal uses to deliver authentication requests via push notifications. Contact to <a class="reference external" href="mailto:contact&#37;&#52;&#48;weblaps&#46;pro">contact<span>&#64;</span>weblaps<span>&#46;</span>pro</a> to get working URL</li>
+<li>External Portal URL - is an URL which will be used by mobile clients to work with LAPS Portal. The only endpoint which is required for mobile device is /api/mobile/fromdevice. In case if you do not plan to publish mobile API to Internet you can use following URL: <a class="reference external" href="https://domain.com/api/mobile">https://domain.com/api/mobile</a> and mobile application will automatically transform it to <a class="reference external" href="https://domain.com/api/mobile/fromdevice">https://domain.com/api/mobile/fromdevice</a>. If you plan to expose mobile API to Internet it is recommended  to use reverse proxy with rewrite URL capabilities which will transform all requests in following way:  <a class="reference external" href="https://example.org/8fe6392f5994f2ac193627c3001029e4863d10ea">https://example.org/8fe6392f5994f2ac193627c3001029e4863d10ea</a> =&gt; <a class="reference external" href="https://domain.com/api/mobile">https://domain.com/api/mobile</a>. You can additionally allow only POST and OPTIONS methods</li>
+<li>Organization name and password is used by cloud service to deliver authentication requests via push notifications</li>
+</ul>
+<img alt="_images/laps_mobile_settings.png" class="align-center" src="_images/laps_mobile_settings.png" />
+</div>
+<div class="section" id="laps-portal-high-availability-mode">
+<h2>LAPS Portal high availability mode<a class="headerlink" href="#laps-portal-high-availability-mode" title="Permalink to this headline">¶</a></h2>
+<p>High availability mode allows you to join several nodes of LAPS Portal to single cluster and place them behind load balancer or reverse proxy. Please check requirements before using LAPS Portal in cluster mode:</p>
+<ul class="simple">
+<li>all nodes must use external database engine</li>
+<li>all nodes must have same private key at keystore with alias “jetty”</li>
+<li>all nodes must use theirs own certificates generated by CA and certificate of CA must be imported to keystore</li>
+<li>load balancer must inject X-Forwarded-For header with valid source IP address</li>
+</ul>
+<img alt="_images/laps_cluster.png" class="align-center" src="_images/laps_cluster.png" />
+</div>
 <div class="section" id="extra-settings">
 <h2>Extra settings<a class="headerlink" href="#extra-settings" title="Permalink to this headline">¶</a></h2>
 <p>Go <strong>Administration-&gt;Communications-&gt;Extra</strong> and configure:</p>
@@ -287,7 +319,7 @@ In case of other integration which uses ssl/tls protocol like LinOTP HTTP API, F
 <img alt="_images/laps_session.png" class="align-center" src="_images/laps_session.png" />
 <ul class="simple">
 <li>Some sensitive API are protected by internal DoS filter. You can restrict maximum number of requests per second to this sensitive API related to authentication, password accessing</li>
-<li>HTTP header which contains information of client IP address if LAPS Portal located behind reverse proxy or balancer</li>
+<li>Forwarded customizer is used to extract source IP address from X-Forwarded-For header which contains information of client IP address if LAPS Portal located behind a reverse proxy or a load balancer.</li>
 </ul>
 <img alt="_images/laps_network.png" class="align-center" src="_images/laps_network.png" />
 <p>Backup passwords managed by LAPS</p>
