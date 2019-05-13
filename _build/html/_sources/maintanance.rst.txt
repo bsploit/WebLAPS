@@ -3,6 +3,7 @@ LAPS Portal maintenance
 
 LAPS Portal restarting
 ----------------------
+
 To restart LAPS portal you can use:
 
 * on unix systems::
@@ -46,7 +47,7 @@ File conf/engine.conf is JSON file which contains basic configuration options
     - boolean
     - flag which is set to true after first launching when default settings are configured
   * - sslport
-    - string
+    - int
     - port used by LAPS Portal to serve TLS connection
   * - keystore_pass 
     - string
@@ -75,6 +76,7 @@ File conf/engine.conf is JSON file which contains basic configuration options
 
 LAPS Portal backup
 ------------------
+
 To restore LAPS portal you should backup following files:
 
 * conf/engine.conf (in case you modified default network port)
@@ -87,6 +89,7 @@ To restore LAPS portal you should backup following files:
 
 Admin password reset
 --------------------
+
 If you forget admin password you can reset it in following way:
 
 * on windows systems::
@@ -99,8 +102,9 @@ If you forget admin password you can reset it in following way:
 
 Errors
 ------
+
 AcceptSecurityContext
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 AcceptSecurityContext error can appear during establishing connection to ActiveDirectory:: 
 
 	[LDAP: error code 49 - 80090308: LdapErr: DSID-0C0903A9, comment: AcceptSecurityContext error, data 52e, v1db1
