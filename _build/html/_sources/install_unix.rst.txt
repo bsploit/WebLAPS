@@ -33,7 +33,7 @@ Installation is pretty simple, the only thing you need is to install Java JRE 1.
 #. Install LAPS portal service. New service "|lapsservice|" will be created.::
 
 	/opt/laps/wrapper/sh/installDaemon.sh
-	systemctl  daemon-reload
+	systemctl daemon-reload
 
 #. Run the service::
 
