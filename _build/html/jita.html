@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; WebLAPS  documentation</title>
+  <title>Just-in-time administration (JITA) &mdash; WebLAPS  documentation</title>
   
 
   
@@ -34,7 +33,7 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
 
@@ -132,12 +131,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Index</li>
+      <li>Just-in-time administration (JITA)</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/jita.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -149,11 +150,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="just-in-time-administration-jita">
+<h1>Just-in-time administration (JITA)<a class="headerlink" href="#just-in-time-administration-jita" title="Permalink to this headline">¶</a></h1>
+<p>Just-in-time administration (JITA) is an approach for minimizing the privileged account attack vector in a security strategy, combined with a precise definition of assigned authorizations. Every time an eligible users needs to perform a task which requires membership in privileged groups, they enable such membership for defined period of time. The membership expire after a specified time period, so that a malicious user can’t steal the access.</p>
+<div class="section" id="jita-roles-and-sessions">
+<h2>JITA roles and sessions<a class="headerlink" href="#jita-roles-and-sessions" title="Permalink to this headline">¶</a></h2>
+<p>After successfully login you can see JITA roles available at “JITA” part of portal.</p>
+<img alt="_images/jita_myroles.png" class="align-center" src="_images/jita_myroles.png" />
+<p>At “My roles” panel you can start, stop or extend active JITA session.
+At start session dialog it is needed to set duration which should be less than maximum allowed TTL defined in role’s configuration and justification describing a reason.</p>
+<img alt="_images/jita_session.png" class="align-center" src="_images/jita_session.png" />
+<p>Active JITA sessions of authenticated user are shown at “My active sessions” pannel.</p>
+<img alt="_images/jita_active_session.png" class="align-center" src="_images/jita_active_session.png" />
+</div>
 </div>
 
 

@@ -17,33 +17,35 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Working with LAPS Portal" href="working.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -80,11 +82,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 </ul>
 
             
@@ -151,7 +153,8 @@
             
   <div class="section" id="welcome-to-weblaps-documentation">
 <h1>Welcome to WebLAPS documentation!<a class="headerlink" href="#welcome-to-weblaps-documentation" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://weblaps.pro/">LAPS Portal</a> is a web application which helps to secure windows environment with MS LAPS solution implemented. MS LAPS is effective mechanism to perform automatic password rotation of built-in Administrator password. <strong>In case of compromising one of user account which is used for LAPS passwords access (like account of help desk user) all computers could be compromised!</strong> To eliminate security risks and provide convenient way for LAPS password accessing LAPS Portal was created.</p>
+<p><a class="reference external" href="http://weblaps.pro/">LAPS Portal</a> is a web application which helps to secure windows environment with MS LAPS solution implemented. MS LAPS is effective tool to perform automatic password rotation of built-in Administrator password. <strong>In case of compromising one of user account which is used for LAPS passwords access (like account of help desk user) all computers could be compromised!</strong> To eliminate security risks and provide convenient way for LAPS password accessing LAPS Portal was created.</p>
+<p>LAPS Portal could be used to implement just-in-time administration (JITA) approach recommended by MS when accounts of system administrators are added to privileged groups for defined period of time and automatically removed after.</p>
 <p>LAPS Portal has mobile clients which works under <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ksoft.laps">Android</a> and <a class="reference external" href="https://itunes.apple.com/us/app/laps-mobile/id1461133789">iOS</a> devices which in a secure way delivers passwords to mobile device. Mobile client also allows to login to LAPS Portal with help of confirmation of authentication request which is delivered by push notification.</p>
 <p>LAPS Portal is written in Java, and could be used on any operation systems which support Java 1.8. LAPS Portal includes all necessary components and does not require additional software like web server or database engine. It is possible to join several LAPS Portal to cluster to operatin in a high availability mode in such case you will need a load balancer and an external database engine.</p>
 <p>LAPS Portal uses Active Directory user accounts and groups to perform access control. To increase security of passwords managed by LAPS authentication with one time passwords was added to the portal. Currently following 2fa connectors implemented:</p>
@@ -159,20 +162,22 @@
 <li>RADIUS</li>
 <li>LinOTP</li>
 <li>FortiAuthenticator</li>
+<li>Duo</li>
 <li>Built-in TOTP provider which does not require any external system</li>
 </ul>
 <p>Security controls implemented in LAPS Portal</p>
 <ul class="simple">
 <li>2FA or OTP only authentication</li>
-<li>Customizable capcha for brutforce attacks prevention</li>
-<li>Configurable maximum count of requests per seconds to authentications methods</li>
-<li>Configurable maximum count of requests per seconds to LAPS passwords accessing to prevent automatic exports of LAPS managed passwords</li>
-<li>Access to Active Directory via LDAP over SSL</li>
-<li>All secrets are saved in encrypted form</li>
+<li>password encryption by LAPS.E or AdmPwd.E supported</li>
+<li>customizable capcha for brutforce attacks prevention</li>
+<li>configurable maximum count of requests per seconds to authentications methods</li>
+<li>configurable maximum count of requests per seconds to LAPS passwords accessing to prevent automatic exports of LAPS managed passwords</li>
+<li>access to Active Directory via LDAP over SSL</li>
+<li>all secrets are saved in encrypted form</li>
 <li>CSRF protection</li>
-<li>User access token is bind to IP address of successful authentication. Access token has a configurable time limit</li>
-<li>Ability to schedule LAPS passwords backup in encrypted form in case of AD unavailability</li>
-<li>Audit all access to passwords managed by LAPS. It is possible to export LAPS logs in CEF format to external system via syslog</li>
+<li>user access token is bind to IP address of successful authentication. Access token has a configurable time limit</li>
+<li>ability to schedule LAPS passwords backup in encrypted form in case of AD unavailability</li>
+<li>audit all access to passwords managed by LAPS. It is possible to export LAPS logs in CEF format to external system via syslog</li>
 </ul>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
@@ -181,6 +186,12 @@
 <li class="toctree-l2"><a class="reference internal" href="working.html#laps-passwords-access">LAPS Passwords access</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working.html#quick-launch-buttons">Quick launch buttons</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working.html#laps-security-log">LAPS security log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working.html#just-in-time-administration-jita">Just-in-time administration (JITA)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mobile.html#laps-mobile-application-enrollment">LAPS mobile application enrollment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mobile.html#laps-mobile-application-usage">LAPS mobile application usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
@@ -189,13 +200,15 @@
 <li class="toctree-l2"><a class="reference internal" href="admin.html#accessing-admin-console">Accessing admin console</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#active-directory-integration">Active Directory integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#certificates">Certificates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="admin.html#access-rights-management">Access rights management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#access-rights-for-laps">Access rights for LAPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#jita-roles">JITA Roles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#authentication-setup">Authentication setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#laps-passwords-expiration">LAPS passwords expiration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#laps-portal-api-and-tokens">LAPS Portal API and tokens</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#laps-portal-and-siem-integration">LAPS Portal and SIEM integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#laps-portal-mobile-app-settings">LAPS Portal mobile app settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#laps-portal-high-availability-mode">LAPS Portal high availability mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#laps-e-admpwd-e-password-encryption">LAPS.E, AdmPwd.E password encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="admin.html#extra-settings">Extra settings</a></li>
 </ul>
 </li>
@@ -210,11 +223,6 @@
 <li class="toctree-l3"><a class="reference internal" href="maintanance.html#sslhandshakeexception">SSLHandshakeException</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mobile.html#laps-mobile-application-enrollment">LAPS mobile application enrollment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mobile.html#laps-mobile-application-usage">LAPS mobile application usage</a></li>
 </ul>
 </li>
 </ul>
@@ -256,26 +264,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -20,15 +20,20 @@ Installation is pretty simple, the only thing you need is to install Java JRE 1.
 #. Change an owner of the directory and set correct access rights::
 
 	chown -R laps:laps /opt/laps
-	chmod –R u=rwx,g=rx,o-rwx /opt/laps
+	chmod –R u=rx,g=rx,o-rwx /opt/laps
+	chmod u+w /opt/laps/wrapper/tmp
+	chmod u+w /opt/laps/logs
+	chmod u+w /opt/laps/conf
+	chmod u+w /opt/laps/keystore
 
 #. If java executable is not on PATH set correct path to java executable in /opt/laps/wrapper/conf/wrapper.conf::
 
-	wrapper.java.command = путь_до_иполняемого_файла_java
+	wrapper.java.command = path_to_java_executable
 
 #. Install LAPS portal service. New service "|lapsservice|" will be created.::
 
 	/opt/laps/wrapper/sh/installDaemon.sh
+	systemctl daemon-reload
 
 #. Run the service::
 

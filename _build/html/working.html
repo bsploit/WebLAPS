@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation in Unix" href="install_unix.html" />
+    <link rel="next" title="LAPS Portal mobile application" href="mobile.html" />
     <link rel="prev" title="Welcome to WebLAPS documentation!" href="index.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -84,13 +86,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#laps-passwords-access">LAPS Passwords access</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#quick-launch-buttons">Quick launch buttons</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laps-security-log">LAPS security log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#just-in-time-administration-jita">Just-in-time administration (JITA)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 </ul>
 
             
@@ -188,6 +191,17 @@
 <p>Portal has built in Log viewer where you can look for various events</p>
 <img alt="_images/laps_audit_log.png" class="align-center" src="_images/laps_audit_log.png" />
 </div>
+<div class="section" id="just-in-time-administration-jita">
+<h2>Just-in-time administration (JITA)<a class="headerlink" href="#just-in-time-administration-jita" title="Permalink to this headline">¶</a></h2>
+<p>Just-in-time administration (JITA) is an approach for minimizing the privileged account attack vector in a security strategy, combined with a precise definition of assigned authorizations. Every time an eligible users needs to perform a task which requires membership in privileged groups, they enable such membership for defined period of time. The membership expire after a specified time period, so that a malicious user can’t steal the access.</p>
+<p>After successfully login you can see JITA roles available at “JITA” part of portal.</p>
+<img alt="_images/jita_myroles.png" class="align-center" src="_images/jita_myroles.png" />
+<p>At “My roles” panel you can start, stop or extend active JITA session.
+At start session dialog it is needed to set duration which should be less than maximum allowed TTL defined in role’s configuration and justification describing a reason.</p>
+<img alt="_images/jita_session.png" class="align-center" src="_images/jita_session.png" />
+<p>Active JITA sessions of authenticated user are shown at “My active sessions” pannel. It is possible to stop or prolong active JITA session.</p>
+<img alt="_images/jita_active_session.png" class="align-center" src="_images/jita_active_session.png" />
+</div>
 </div>
 
 
@@ -198,10 +212,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="install_unix.html" class="btn btn-neutral float-right" title="Installation in Unix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mobile.html" class="btn btn-neutral float-right" title="LAPS Portal mobile application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to WebLAPS documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to WebLAPS documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -227,26 +241,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

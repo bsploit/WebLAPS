@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="LAPS Portal maintenance" href="maintanance.html" />
     <link rel="prev" title="Installation in Windows" href="install_win.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -81,24 +83,26 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">LAPS Portal administration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#accessing-admin-console">Accessing admin console</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#active-directory-integration">Active Directory integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#certificates">Certificates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#access-rights-management">Access rights management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-rights-for-laps">Access rights for LAPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jita-roles">JITA Roles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication-setup">Authentication setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laps-passwords-expiration">LAPS passwords expiration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laps-portal-api-and-tokens">LAPS Portal API and tokens</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laps-portal-and-siem-integration">LAPS Portal and SIEM integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laps-portal-mobile-app-settings">LAPS Portal mobile app settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laps-portal-high-availability-mode">LAPS Portal high availability mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#laps-e-admpwd-e-password-encryption">LAPS.E, AdmPwd.E password encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#extra-settings">Extra settings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 </ul>
 
             
@@ -180,7 +184,7 @@
 <p>Go to <strong>Administration-&gt;Communications-&gt;LDAP</strong> and setup following settings:</p>
 <ul class="simple">
 <li>bind user account which has access rights to get attributes ms-Mcs-AdmPwd and modify ms-Mcs-AdmPwdExpirationTime</li>
-<li>FQDN name of AD servers (it is allowed to set several servers divided by “;”“)</li>
+<li>FQDN name of AD servers (it is allowed to set several servers divided by “;””)</li>
 </ul>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -212,9 +216,9 @@ In case of other integration which uses ssl/tls protocol like LinOTP HTTP API, F
 <p class="last">After certificates import do not forget to restart LAPS Portal</p>
 </div>
 </div>
-<div class="section" id="access-rights-management">
-<h2>Access rights management<a class="headerlink" href="#access-rights-management" title="Permalink to this headline">¶</a></h2>
-<p>Go to <strong>Administration-&gt;Security-&gt;Groups</strong> and setup user group to OU mappings. You must use distinguished names of groups and OUs. Members of group will be able to get LAPS passwords of computers in the OU and sub OUs.</p>
+<div class="section" id="access-rights-for-laps">
+<h2>Access rights for LAPS<a class="headerlink" href="#access-rights-for-laps" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration-&gt;Security-&gt;LAPS Groups</strong> and setup user group to OU mappings. You must use distinguished names of groups and OUs. Members of group will be able to get LAPS passwords of computers in the OU and sub OUs.</p>
 <img alt="_images/laps_groups.png" class="align-center" src="_images/laps_groups.png" />
 <p>It is possible to import CSV file with groups and OUs mapping, file must be in following portal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="n">of</span> <span class="n">element</span><span class="p">;</span><span class="n">group</span> <span class="n">DN</span><span class="p">;</span><span class="n">OU</span> <span class="n">DN</span>
@@ -224,6 +228,12 @@ In case of other integration which uses ssl/tls protocol like LinOTP HTTP API, F
 </div>
 <p>Import the file</p>
 <img alt="_images/import_laps_mapping.png" class="align-center" src="_images/import_laps_mapping.png" />
+</div>
+<div class="section" id="jita-roles">
+<h2>JITA Roles<a class="headerlink" href="#jita-roles" title="Permalink to this headline">¶</a></h2>
+<p>Just in time administration (JITA) module activates privileged roles (membership in defined AD groups) to authorized user for finite amount of time. With such approach accounts of system administrators will be added to privileged groups or set of groups only after 2FA verification during portal login.</p>
+<p>JITA roles are configured at <strong>Administration-&gt;Security-&gt;LAPS Groups</strong>. Each JITA role consist of role name, short description, role group distinguished name which is used to provide access to the role, role membership maximum TTL after which user account will be automatically removed from privileged groups and set of priviledged groups.</p>
+<img alt="_images/laps_jita_config.png" class="align-center" src="_images/laps_jita_config.png" />
 </div>
 <div class="section" id="authentication-setup">
 <h2>Authentication setup<a class="headerlink" href="#authentication-setup" title="Permalink to this headline">¶</a></h2>
@@ -251,6 +261,10 @@ In case of other integration which uses ssl/tls protocol like LinOTP HTTP API, F
 <li>fortiauth provider for integration with FortiAuthenticator</li>
 </ul>
 <img alt="_images/laps_fortiauthenticator.png" class="align-center" src="_images/laps_fortiauthenticator.png" />
+<ul class="simple">
+<li>duo provider for integration with Duo</li>
+</ul>
+<img alt="_images/laps_duo.png" class="align-center" src="_images/laps_duo.png" />
 <ul class="last simple">
 <li>totp provider which is built in to LAPS Portal. You can use this provider in case you do not have in your environment OTP system to enable two factor authentication for LAPS Portal. If you use this type of TOTP provider you will need to use mobile application like FreeOTP, Google Authenticator, etc.</li>
 </ul>
@@ -310,6 +324,17 @@ Go to <strong>Administration-&gt;Communications-&gt;Mobile</strong> and perform 
 </ul>
 <img alt="_images/laps_cluster.png" class="align-center" src="_images/laps_cluster.png" />
 </div>
+<div class="section" id="laps-e-admpwd-e-password-encryption">
+<h2>LAPS.E, AdmPwd.E password encryption<a class="headerlink" href="#laps-e-admpwd-e-password-encryption" title="Permalink to this headline">¶</a></h2>
+<p>If you use password encryption with help of LAPS.E or AdmPwd.E it is needed to import private keys. It is needed to convert every private key usually located at c:\Program Files\AdmPwdSrc\CryptoKeyStorage or c:\Program Files\AdmPwd\PDS\CryptoKeyStorage from GenericPrivateBlob to PKCS#8 format with help of <a class="reference external" href="https://weblaps.pro/distr/KeyConverter.exe">KeyConverter</a> utility.</p>
+<img alt="_images/admpwd_weblaps_keyconverter.png" class="align-center" src="_images/admpwd_weblaps_keyconverter.png" />
+<p>Next import converted private keys at <strong>Administration-&gt;Security-&gt;Extra</strong> and activate <strong>Decrypt encrypted passwords (laps.e, AdmPwd.E)</strong> checkbox.</p>
+<img alt="_images/import_admpwd_key.png" class="align-center" src="_images/import_admpwd_key.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">It is important to set right Key ID which is equals to a number at the beginning of private key’s file name. For a file 1_Key.dat or 1_PrivateKey.dat Key ID is 1.</p>
+</div>
+</div>
 <div class="section" id="extra-settings">
 <h2>Extra settings<a class="headerlink" href="#extra-settings" title="Permalink to this headline">¶</a></h2>
 <p>Go <strong>Administration-&gt;Communications-&gt;Extra</strong> and configure:</p>
@@ -345,7 +370,7 @@ Go to <strong>Administration-&gt;Communications-&gt;Mobile</strong> and perform 
         <a href="maintanance.html" class="btn btn-neutral float-right" title="LAPS Portal maintenance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="install_win.html" class="btn btn-neutral" title="Installation in Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="install_win.html" class="btn btn-neutral float-left" title="Installation in Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -371,26 +396,16 @@ Go to <strong>Administration-&gt;Communications-&gt;Mobile</strong> and perform 
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

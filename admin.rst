@@ -55,9 +55,9 @@ After fresh install LAPS Portal generates self-signed certificate which has alia
 .. warning:: 
 	After certificates import do not forget to restart LAPS Portal
 
-Access rights management
+Access rights for LAPS
 ------------------------
-Go to **Administration->Security->Groups** and setup user group to OU mappings. You must use distinguished names of groups and OUs. Members of group will be able to get LAPS passwords of computers in the OU and sub OUs.
+Go to **Administration->Security->LAPS Groups** and setup user group to OU mappings. You must use distinguished names of groups and OUs. Members of group will be able to get LAPS passwords of computers in the OU and sub OUs.
 
 .. image::  img/laps_groups.png
 	:align: center
@@ -72,6 +72,17 @@ Import the file
 
 .. image::  img/import_laps_mapping.png
 	:align: center	
+
+JITA Roles
+------------------------
+Just in time administration (JITA) module activates privileged roles (membership in defined AD groups) to authorized user for finite amount of time. With such approach accounts of system administrators will be added to privileged groups or set of groups only after 2FA verification during portal login.
+
+JITA roles are configured at **Administration->Security->LAPS Groups**. Each JITA role consist of role name, short description, role group distinguished name which is used to provide access to the role, role membership maximum TTL after which user account will be automatically removed from privileged groups and set of priviledged groups.
+
+
+.. image::  img/laps_jita_config.png
+	:align: center	
+
 
 Authentication setup
 --------------------
@@ -98,6 +109,11 @@ Go to **Administration->Security->Authentication** and setup authentication para
 	.. image::  img/laps_fortiauthenticator.png
 		:align: center	
 
+	* duo provider for integration with Duo
+
+	.. image::  img/laps_duo.png
+		:align: center	
+		
 	* totp provider which is built in to LAPS Portal. You can use this provider in case you do not have in your environment OTP system to enable two factor authentication for LAPS Portal. If you use this type of TOTP provider you will need to use mobile application like FreeOTP, Google Authenticator, etc.
 
 * Capcha generation requirements: capcha alphabet, unsuccessfull login attempts after capcha will be required 
@@ -163,6 +179,23 @@ High availability mode allows you to join several nodes of LAPS Portal to single
 .. image::  img/laps_cluster.png
 	:align: center
 
+LAPS.E, AdmPwd.E password encryption
+------------------------------------
+If you use password encryption with help of LAPS.E or AdmPwd.E it is needed to import private keys. It is needed to convert every private key usually located at c:\\Program Files\\AdmPwd\Src\\CryptoKeyStorage or c:\\Program Files\\AdmPwd\\PDS\\CryptoKeyStorage from GenericPrivateBlob to PKCS#8 format with help of KeyConverter_ utility.
+
+.. _KeyConverter: https://weblaps.pro/distr/KeyConverter.exe
+
+.. image::  img/admpwd_weblaps_keyconverter.png
+	:align: center 
+
+Next import converted private keys at **Administration->Security->Extra** and activate **Decrypt encrypted passwords (laps.e, AdmPwd.E)** checkbox.
+
+.. image::  img/import_admpwd_key.png
+	:align: center 
+
+.. warning::  
+    It is important to set right Key ID which is equals to a number at the beginning of private key's file name. For a file 1_Key.dat or 1_PrivateKey.dat Key ID is 1.
+
 
 Extra settings
 ---------------------
@@ -191,3 +224,4 @@ At **Administration->System->Laps Backup** you can configure automatic backup of
 
 .. image::  img/laps_passwords_backup.png
 	:align: center 
+

@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Installation in Windows" href="install_win.html" />
-    <link rel="prev" title="Working with LAPS Portal" href="working.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+    <link rel="prev" title="LAPS Portal mobile application" href="mobile.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -81,11 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 </ul>
 
             
@@ -169,17 +171,22 @@
 </li>
 <li><p class="first">Change an owner of the directory and set correct access rights:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>chown -R laps:laps /opt/laps
-chmod –R u=rwx,g=rx,o-rwx /opt/laps
+chmod –R u=rx,g=rx,o-rwx /opt/laps
+chmod u+w /opt/laps/wrapper/tmp
+chmod u+w /opt/laps/logs
+chmod u+w /opt/laps/conf
+chmod u+w /opt/laps/keystore
 </pre></div>
 </div>
 </li>
 <li><p class="first">If java executable is not on PATH set correct path to java executable in /opt/laps/wrapper/conf/wrapper.conf:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wrapper</span><span class="o">.</span><span class="n">java</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">путь_до_иполняемого_файла_java</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wrapper</span><span class="o">.</span><span class="n">java</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">path_to_java_executable</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Install LAPS portal service. New service “laps” will be created.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">laps</span><span class="o">/</span><span class="n">wrapper</span><span class="o">/</span><span class="n">sh</span><span class="o">/</span><span class="n">installDaemon</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">systemctl</span>  <span class="n">daemon</span><span class="o">-</span><span class="n">reload</span>
 </pre></div>
 </div>
 </li>
@@ -204,7 +211,7 @@ chmod –R u=rwx,g=rx,o-rwx /opt/laps
         <a href="install_win.html" class="btn btn-neutral float-right" title="Installation in Windows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="working.html" class="btn btn-neutral" title="Working with LAPS Portal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mobile.html" class="btn btn-neutral float-left" title="LAPS Portal mobile application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -230,26 +237,16 @@ chmod –R u=rwx,g=rx,o-rwx /opt/laps
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
