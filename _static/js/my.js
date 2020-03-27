@@ -23,6 +23,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
   ga('create', 'UA-121627672-1', 'auto');
   ga('require', 'ipMeta', {
+      apiKey: 'dfceb3b10e2938d65a52d87732148bc2b2d221652e527bff55046e43d850c10e',
       serviceProvider: 'dimension1',
       networkDomain: 'dimension2',
       networkType: 'dimension3',
