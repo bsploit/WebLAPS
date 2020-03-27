@@ -13,3 +13,14 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/57652708" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
+
+<script src="https://ipmeta.io/plugin.js"></script>
+<script>
+    ga('require', 'ipMeta', {
+      serviceProvider: 'dimension1',
+      networkDomain: 'dimension2',
+      networkType: 'dimension3',
+  });
+  ga('ipMeta:loadNetworkFields');
+</script>
