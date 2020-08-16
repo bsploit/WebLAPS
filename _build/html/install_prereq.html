@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; WebLAPS  documentation</title>
+  <title>Installation Prerequisites &mdash; WebLAPS  documentation</title>
   
 
   
@@ -26,7 +26,6 @@
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
         <script type="text/javascript" src="_static/js/my.js"></script>
-        <script type="text/javascript" src="_static/searchtools.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,7 +35,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation in Unix" href="install_unix.html" />
+    <link rel="prev" title="WebLAPS agent" href="agent.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -63,7 +64,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -81,11 +82,11 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="agent.html">WebLAPS agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install_prereq.html">Installation Prerequisites</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
@@ -135,12 +136,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Search</li>
+      <li>Installation Prerequisites</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/install_prereq.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -152,24 +155,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="installation-prerequisites">
+<h1>Installation Prerequisites<a class="headerlink" href="#installation-prerequisites" title="Permalink to this headline">¶</a></h1>
+<p>Prior to installing the WebLAPS, the following requirements must be met:</p>
+<ol class="arabic">
+<li><p class="first">Install Java JRE or JDK version 1.8</p>
+</li>
+<li><p class="first">Check that java executable is on your system PATH. Following command must return no errors</p>
+<blockquote>
+<div><p>java -version</p>
+</div></blockquote>
+</li>
+</ol>
+<p>if any error occurred please fix your Java installation <a class="reference external" href="https://www.java.com/en/download/help/path.xml">https://www.java.com/en/download/help/path.xml</a></p>
+<ol class="arabic simple">
+<li>Make sure that network connection is open to port 636 (LDAPS) from weblaps host to domain controllers</li>
+<li>Make sure that your LDAPS is configured at your domain controllers. LAPS stores passwords in special confidential attribute which is accessible only via secured connection. <a class="reference external" href="https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx">https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx</a></li>
+<li>Prepare service user in AD and grant it permissions to read and reset passwords.</li>
+<li>Export certificate of CA which signed certificate for LDAPS</li>
+<li>import CA certificate at mobile devices if you want to use LAPS mobile app and you use your own CA to issue certificate for WebLAPS server.</li>
+</ol>
+</div>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install_unix.html" class="btn btn-neutral float-right" title="Installation in Unix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="agent.html" class="btn btn-neutral float-left" title="WebLAPS agent" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -202,14 +223,7 @@
   
   
     
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

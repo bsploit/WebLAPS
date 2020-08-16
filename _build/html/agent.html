@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WebLAPS agent &mdash; WebLAPS  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/js/my.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation Prerequisites" href="install_prereq.html" />
+    <link rel="prev" title="LAPS Portal mobile application" href="mobile.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> WebLAPS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">WebLAPS agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#weblaps-agent-installation">WebLAPS agent installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblaps-agent-policy">WebLAPS agent policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblaps-agent-access-management">WebLAPS agent access management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install_prereq.html">Installation Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintanance.html">LAPS Portal maintenance</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WebLAPS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>WebLAPS agent</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/agent.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="weblaps-agent">
+<h1>WebLAPS agent<a class="headerlink" href="#weblaps-agent" title="Permalink to this headline">¶</a></h1>
+<p>WebLAPS agent is used to manage passwords of local users and control membership in local groups. It could be run on joined or non domain joined computers.</p>
+<div class="section" id="weblaps-agent-installation">
+<h2>WebLAPS agent installation<a class="headerlink" href="#weblaps-agent-installation" title="Permalink to this headline">¶</a></h2>
+<p>Before you begin make sure that MS .NET Framework 4.5.1 is installed.</p>
+<p>You can install WebLAPS agent using command line:</p>
+<blockquote>
+<div>msiexec /i WebLAPSInstaller.msi /quiet /norestart SERVERURL=&lt;serverulr&gt; JOINKEY=&lt;joinkey&gt;</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Parameter</strong></th>
+<th class="head"><strong>Example</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SERVERURL</td>
+<td><a class="reference external" href="https://weblapspublic.host;https://weblapsprivate.host">https://weblapspublic.host;https://weblapsprivate.host</a></td>
+<td>WebLAPS server URL. You can set multiple URLs delimmited with “;” in case if you want to perform password rotation on remote computers outside of corporate network. WebLAPS agent will try to select first available server. If you use reversproxy you can publish  URLs used by agent with mask /api/computers/remote/* so no other functionality will be available from internet.</td>
+</tr>
+<tr class="row-odd"><td>JOINKEY</td>
+<td>superSECRETkey1</td>
+<td>key validated once by WebLAPS during initial connection.</td>
+</tr>
+<tr class="row-even"><td>NOSSLCHECK</td>
+<td>1</td>
+<td>disable server certificate validation</td>
+</tr>
+<tr class="row-odd"><td>GROUPID</td>
+<td>bc96b2b6-ab66-4592-be0a-2dfcfe317e58</td>
+<td>You can manually set computer container ID which will be used by agent to get policy otherwise distribution rules will be used to determine container</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="weblaps-agent-policy">
+<h2>WebLAPS agent policy<a class="headerlink" href="#weblaps-agent-policy" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration -&gt; Computers -&gt; Policies</strong> and select computer container, next press “Add new” button.
+You can configure multiple policies which will be applied to the same computer container. Policies are inherited from all parent containers.</p>
+<img alt="_images/weblaps_agent_policy.png" class="align-center" src="_images/weblaps_agent_policy.png" />
+<p>WebLAPS agent policy is applied to specified <em>local</em> user account. WebLAPS agent can automatically create managed user if it is not exists. For automatic password rotation please select <strong>Manage password</strong> checkbox and set “Password age”. You can automatically remove all users from defined group except approved. You can specify multiple approved users delimited with “;”. For domain user use following format: domain\login.</p>
+<p>To view result settings for a container go to <strong>Administration -&gt; Computers -&gt; Container Details</strong> and select a computer container.</p>
+<img alt="_images/weblaps_agent_result.png" class="align-center" src="_images/weblaps_agent_result.png" />
+</div>
+<div class="section" id="weblaps-agent-access-management">
+<h2>WebLAPS agent access management<a class="headerlink" href="#weblaps-agent-access-management" title="Permalink to this headline">¶</a></h2>
+<p>Go to <strong>Administration-&gt;Computers -&gt; Access Groups</strong> and setup user group to computer container mappings. You must use distinguished names of groups. Members of group will be able to get passwords managed by WebLAPS agent in the container and sub containers. If you have multiple policies for several managed users per one container you can additionally restrict managed .users to which passwords you provide access by filling <strong>Allow access only to following subjects</strong> parameter.</p>
+<img alt="_images/weblaps_agent_access.png" class="align-center" src="_images/weblaps_agent_access.png" />
+<p>Additionally you can provide access only for particular computer to an user or a group (group nesting is not supported) by editing computer object. This mechanism does not connected with access control subsystem based on groups and containers</p>
+<img alt="_images/weblaps_agent_access_managedby.png" class="align-center" src="_images/weblaps_agent_access_managedby.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install_prereq.html" class="btn btn-neutral float-right" title="Installation Prerequisites" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mobile.html" class="btn btn-neutral float-left" title="LAPS Portal mobile application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, weblaps.pro
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

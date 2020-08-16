@@ -1,4 +1,5 @@
 *.docx
+*.pptx
 *.bat
 *.tmp
 Makefile

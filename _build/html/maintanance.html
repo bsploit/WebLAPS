@@ -84,6 +84,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html">WebLAPS agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_prereq.html">Installation Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
@@ -96,6 +98,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#errors">Errors</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#acceptsecuritycontext">AcceptSecurityContext</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sslhandshakeexception">SSLHandshakeException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#socketexception">SocketException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unable-to-start-service">Unable to start service</a></li>
 </ul>
 </li>
 </ul>
@@ -346,6 +350,32 @@ runConsole.bat resetpass</dd>
 </div>
 <p>You should check whether all certificate chain imported into LAPS Portal. After importing certificates do not forget to restart LAPS Portal service.</p>
 <p>In case this error appears during communication with AD Controllers you should also check how many certificates domain controller has with Server Authentication purpose. In normal situation AD Controller should have one personal certificate with Server Authentication purposes . According to <a class="reference external" href="https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx">https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx</a> <em>“You should be planning on having only one certificate on each LDAP server (i.e. domain controller or AD LDS computer) with the purpose of Server Authentication. If you have legitimate reasons for using more than one, you may end up having certificate selection issues, which is discussed further in the Active Directory Domain Services Certificate Storage.</em> As workaround import all certificates with Server Authentication purposes  to LAPS Portal</p>
+</div>
+<div class="section" id="socketexception">
+<h3>SocketException<a class="headerlink" href="#socketexception" title="Permalink to this headline">¶</a></h3>
+<p>java.net.SocketException  indicates that there is LAPS Portal unable to establish TCP connection to domain controller. It could be caused by local or network firewall, problems in DNS resolition or that LDAPS is not configured on domain controller. In case of following error</p>
+<blockquote>
+<div>Error connectiong to LDAP
+javax.naming.CommunicationException: ad.domain.com:636 [Root exception is java.net.SocketException: Connection reset]</div></blockquote>
+<p>please check that you can connect on port 636 from host where WebLAPS is installed to domain controller. You can do it with telnet command:</p>
+<blockquote>
+<div>telnet domain.controller.host 636</div></blockquote>
+<p>where domain.controller.host is a domain controller FQDN. Please check following article to be sure that LDAP over SSL is porperly configured at your domain controller <a class="reference external" href="https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx">https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx</a></p>
+</div>
+<div class="section" id="unable-to-start-service">
+<h3>Unable to start service<a class="headerlink" href="#unable-to-start-service" title="Permalink to this headline">¶</a></h3>
+<p>WebLAPS service crashes, log/wrapper.log contains following lines:</p>
+<blockquote>
+<div>INFO|wrapper|Service laps|20-05-21 17:58:41|could not start process 57
+INFO|wrapper|Service laps|20-05-21 17:58:41|The parameter is incorrect.
+INFO|wrapper|Service laps|20-05-21 17:58:41|null/null/null
+SEVERE|wrapper|Service laps|20-05-21 17:58:41|failed to spawn wrapped process</div></blockquote>
+<p>Please check that java.exe file is on system path. In case if there are more than one JRE edit wrapperconfwrapper.conf, find follwing line</p>
+<blockquote>
+<div>wrapper.java.command  = ${ if  (“${os.name}”.toLowerCase().startsWith(“windows”)) “java.exe”; else “java”}</div></blockquote>
+<p>and comment it with ‘#’. Next set wrapper.java.command to right path to java.exe file like this (replace with correct path to java.exe)</p>
+<blockquote>
+<div>wrapper.java.command  = c:/Program Files/Java/jre1.8.0_251/bin/java.exe</div></blockquote>
 </div>
 </div>
 </div>

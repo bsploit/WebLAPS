@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation in Unix" href="install_unix.html" />
+    <link rel="next" title="WebLAPS agent" href="agent.html" />
     <link rel="prev" title="Working with LAPS Portal" href="working.html" /> 
 </head>
 
@@ -89,6 +89,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#laps-mobile-application-usage">LAPS mobile application usage</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html">WebLAPS agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_prereq.html">Installation Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
@@ -159,7 +161,7 @@
             
   <div class="section" id="laps-portal-mobile-application">
 <h1>LAPS Portal mobile application<a class="headerlink" href="#laps-portal-mobile-application" title="Permalink to this headline">¶</a></h1>
-<p>LAPS Portal has mobile clients which works under <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ksoft.laps">Android</a> and <a class="reference external" href="https://itunes.apple.com/us/app/laps-mobile/id1461133789">iOS</a> devices.
+<p>LAPS Portal has mobile client which works under <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ksoft.laps">Android</a> and <a class="reference external" href="https://itunes.apple.com/us/app/laps-mobile/id1461133789">iOS</a> devices.
 Main features of LAPS mobile client:</p>
 <ul class="simple">
 <li>secure access to passwords managed by MS LAPS: in addition to TLS encryption all passwords are additionally encrypted with AES algorithm with unique device key per user. This device key is generated during device enrollment process and stored in secure way at mobile device. On iOS key is stored directly in the KeyChain. On Android key itself is encrypted with random 256-bit AES master key which is encrypted with a device-generated RSA (RSA/ECB/PKCS1Padding) from the Android KeyStore. The combination of the encrypted RSA(AES(master key)) and AES(device key) are stored in SharedPreferences.</li>
@@ -202,7 +204,7 @@ Main features of LAPS mobile client:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="install_unix.html" class="btn btn-neutral float-right" title="Installation in Unix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="agent.html" class="btn btn-neutral float-right" title="WebLAPS agent" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="working.html" class="btn btn-neutral float-left" title="Working with LAPS Portal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

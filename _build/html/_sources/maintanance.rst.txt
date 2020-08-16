@@ -144,3 +144,34 @@ javax.naming.CommunicationException javax.net.ssl.SSLHandshakeException indicate
 You should check whether all certificate chain imported into LAPS Portal. After importing certificates do not forget to restart LAPS Portal service.
 
 In case this error appears during communication with AD Controllers you should also check how many certificates domain controller has with Server Authentication purpose. In normal situation AD Controller should have one personal certificate with Server Authentication purposes . According to https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx *"You should be planning on having only one certificate on each LDAP server (i.e. domain controller or AD LDS computer) with the purpose of Server Authentication. If you have legitimate reasons for using more than one, you may end up having certificate selection issues, which is discussed further in the Active Directory Domain Services Certificate Storage.* As workaround import all certificates with Server Authentication purposes  to LAPS Portal
+
+SocketException
+^^^^^^^^^^^^^^^
+java.net.SocketException  indicates that there is LAPS Portal unable to establish TCP connection to domain controller. It could be caused by local or network firewall, problems in DNS resolition or that LDAPS is not configured on domain controller. In case of following error
+  
+  Error connectiong to LDAP
+  javax.naming.CommunicationException: ad.domain.com:636 [Root exception is java.net.SocketException: Connection reset]
+
+please check that you can connect on port 636 from host where WebLAPS is installed to domain controller. You can do it with telnet command:
+  
+  telnet domain.controller.host 636
+  
+where domain.controller.host is a domain controller FQDN. Please check following article to be sure that LDAP over SSL is porperly configured at your domain controller https://social.technet.microsoft.com/wiki/contents/articles/2980.ldap-over-ssl-ldaps-certificate.aspx
+
+
+Unable to start service
+^^^^^^^^^^^^^^^^^^^^^^^
+WebLAPS service crashes, log/wrapper.log contains following lines:
+
+  INFO|wrapper|Service laps|20-05-21 17:58:41|could not start process 57
+  INFO|wrapper|Service laps|20-05-21 17:58:41|The parameter is incorrect.
+  INFO|wrapper|Service laps|20-05-21 17:58:41|null/null/null
+  SEVERE|wrapper|Service laps|20-05-21 17:58:41|failed to spawn wrapped process
+
+Please check that java.exe file is on system path. In case if there are more than one JRE edit wrapper\conf\wrapper.conf, find follwing line 
+
+  wrapper.java.command  = ${ if  ("${os.name}".toLowerCase().startsWith("windows")) "java.exe"; else "java"}
+
+and comment it with '#'. Next set wrapper.java.command to right path to java.exe file like this (replace with correct path to java.exe)
+
+  wrapper.java.command  = c:/Program Files/Java/jre1.8.0_251/bin/java.exe

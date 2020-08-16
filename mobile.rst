@@ -1,6 +1,6 @@
 LAPS Portal mobile application
 ==============================
-LAPS Portal has mobile clients which works under Android_ and iOS_ devices. 
+LAPS Portal has mobile client which works under Android_ and iOS_ devices. 
 Main features of LAPS mobile client:
 
 * secure access to passwords managed by MS LAPS: in addition to TLS encryption all passwords are additionally encrypted with AES algorithm with unique device key per user. This device key is generated during device enrollment process and stored in secure way at mobile device. On iOS key is stored directly in the KeyChain. On Android key itself is encrypted with random 256-bit AES master key which is encrypted with a device-generated RSA (RSA/ECB/PKCS1Padding) from the Android KeyStore. The combination of the encrypted RSA(AES(master key)) and AES(device key) are stored in SharedPreferences.

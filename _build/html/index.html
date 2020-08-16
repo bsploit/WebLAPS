@@ -84,6 +84,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="working.html">Working with LAPS Portal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mobile.html">LAPS Portal mobile application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html">WebLAPS agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_prereq.html">Installation Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a></li>
@@ -154,11 +156,12 @@
             
   <div class="section" id="welcome-to-weblaps-documentation">
 <h1>Welcome to WebLAPS documentation!<a class="headerlink" href="#welcome-to-weblaps-documentation" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://weblaps.pro/">LAPS Portal</a> is a web application which helps to secure windows environment with MS LAPS solution implemented. MS LAPS is effective tool to perform automatic password rotation of built-in Administrator password. <strong>In case of compromising one of user account which is used for LAPS passwords access (like account of help desk user) all computers could be compromised!</strong> To eliminate security risks and provide convenient way for LAPS password accessing LAPS Portal was created.</p>
-<p>LAPS Portal could be used to implement just-in-time administration (JITA) approach recommended by MS when accounts of system administrators are added to privileged groups for defined period of time and automatically removed after.</p>
-<p>LAPS Portal has mobile clients which works under <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ksoft.laps">Android</a> and <a class="reference external" href="https://itunes.apple.com/us/app/laps-mobile/id1461133789">iOS</a> devices which in a secure way delivers passwords to mobile device. Mobile client also allows to login to LAPS Portal with help of confirmation of authentication request which is delivered by push notification.</p>
-<p>LAPS Portal is written in Java, and could be used on any operation systems which support Java 1.8. LAPS Portal includes all necessary components and does not require additional software like web server or database engine. It is possible to join several LAPS Portal to cluster to operatin in a high availability mode in such case you will need a load balancer and an external database engine.</p>
-<p>LAPS Portal uses Active Directory user accounts and groups to perform access control. To increase security of passwords managed by LAPS authentication with one time passwords was added to the portal. Currently following 2fa connectors implemented:</p>
+<p><a class="reference external" href="http://weblaps.pro/">WebLAPS</a> is a web application which helps to secure windows environment with MS LAPS solution implemented. MS LAPS is effective tool to perform automatic password rotation of built-in Administrator password. <strong>In case of compromising one of user account which is used for LAPS passwords access (like account of help desk user) all computers could be compromised!</strong> To eliminate security risks and provide convenient way for LAPS password accessing LAPS Portal was created.</p>
+<p>WebLAPS could be used to implement just-in-time administration (JITA) approach recommended by MS when accounts of system administrators are added to privileged groups for defined period of time and automatically removed after.</p>
+<p>WebLAPS has an agent which could be used to manage local user accounts at non domain joined computers. It also can automatically create managed user, rotate its password and control membership in defined groups.</p>
+<p>WebLAPS has mobile clients which works under <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ksoft.laps">Android</a> and <a class="reference external" href="https://itunes.apple.com/us/app/laps-mobile/id1461133789">iOS</a> devices which in a secure way delivers passwords to mobile device. Mobile client also allows to login to LAPS Portal with help of confirmation of authentication request which is delivered by push notification.</p>
+<p>WebLAPS is written in Java, and could be used on any operation systems which support Java 1.8. LAPS Portal includes all necessary components and does not require additional software like web server or database engine. It is possible to join several LAPS Portal to cluster to operatin in a high availability mode in such case you will need a load balancer and an external database engine.</p>
+<p>WebLAPS uses Active Directory user accounts and groups to perform access control. To increase security of passwords managed by LAPS authentication with one time passwords was implemented. Currently following 2fa connectors implemented:</p>
 <ul class="simple">
 <li>RADIUS</li>
 <li>LinOTP</li>
@@ -166,7 +169,7 @@
 <li>Duo</li>
 <li>Built-in TOTP provider which does not require any external system</li>
 </ul>
-<p>Security controls implemented in LAPS Portal</p>
+<p>Security controls implemented in WebLAPS</p>
 <ul class="simple">
 <li>2FA or OTP only authentication</li>
 <li>password encryption by LAPS.E or AdmPwd.E supported</li>
@@ -178,7 +181,7 @@
 <li>CSRF protection</li>
 <li>user access token is bind to IP address of successful authentication. Access token has a configurable time limit</li>
 <li>ability to schedule LAPS passwords backup in encrypted form in case of AD unavailability</li>
-<li>audit all access to passwords managed by LAPS. It is possible to export LAPS logs in CEF format to external system via syslog</li>
+<li>audit access to passwords managed by LAPS. It is possible to export LAPS logs in CEF format to external system via syslog</li>
 </ul>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
@@ -195,6 +198,13 @@
 <li class="toctree-l2"><a class="reference internal" href="mobile.html#laps-mobile-application-usage">LAPS mobile application usage</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html">WebLAPS agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="agent.html#weblaps-agent-installation">WebLAPS agent installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent.html#weblaps-agent-policy">WebLAPS agent policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent.html#weblaps-agent-access-management">WebLAPS agent access management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install_prereq.html">Installation Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unix.html">Installation in Unix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_win.html">Installation in Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="admin.html">LAPS Portal administration</a><ul>
@@ -222,6 +232,8 @@
 <li class="toctree-l2"><a class="reference internal" href="maintanance.html#errors">Errors</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="maintanance.html#acceptsecuritycontext">AcceptSecurityContext</a></li>
 <li class="toctree-l3"><a class="reference internal" href="maintanance.html#sslhandshakeexception">SSLHandshakeException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maintanance.html#socketexception">SocketException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maintanance.html#unable-to-start-service">Unable to start service</a></li>
 </ul>
 </li>
 </ul>
